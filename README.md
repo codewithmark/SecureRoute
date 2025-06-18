@@ -115,7 +115,7 @@ Make sure your router is in `index.php` and handles all requests.
 
 ## 📄 License
 
-MIT © [Your Name]
+MIT © [Code With Mark]
 
 ---
 
