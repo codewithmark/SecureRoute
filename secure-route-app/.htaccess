@@ -1,0 +1,11 @@
+RewriteEngine On
+
+# Set the base directory if your project is in a subfolder
+# RewriteBase /your-subdirectory/
+
+# If the request is for an existing file or directory, do nothing
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+
+# Otherwise, send the request to index.php
+RewriteRule ^ index.php [QSA,L]
