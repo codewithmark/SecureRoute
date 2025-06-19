@@ -1,5 +1,5 @@
 <?php 
-    require 'SecureRoute.php';
+    require 'SecureRoute.php'; 
 
     $router = new SecureRoute([], '/secure-route-app'); // ✅ BASE PATH SET
 
