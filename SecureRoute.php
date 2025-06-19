@@ -131,7 +131,7 @@ class SecureRoute
 
         if (!$match) {
             http_response_code(404);
-            echo '404 Not Found';
+            $this->render404Page();
             return;
         }
 
@@ -162,6 +162,111 @@ class SecureRoute
         }
 
         return "`^$route$`u";
+    }
+
+    protected function render404Page(): void
+    { 
+
+        ?>
+        <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <title>404 Page</title>
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <style>
+                html, body {
+                    height: 100%;
+                    margin-top: 100px;
+                    background-color: #556;
+                    font-family: Arial, sans-serif;
+                    color: #333;
+                }
+
+                .main-container {
+                    max-width: 1000px;
+                    margin: 35px auto;
+                    padding: 20px;
+                    background: #FFF;
+                    border: 1px dotted #CCC;
+                    border-radius: 50px;
+                    text-align: center;
+                }
+
+                .icon {
+                    font-size: 200px;
+                    color: #888;
+                }
+
+                .title {
+                    font-size: 48px;
+                    margin-top: 20px;
+                }
+
+                .message {
+                    font-size: 28px;
+                    margin: 30px 0;
+                }
+
+                .btn {
+                    display: inline-block;
+                    background-color: #28a745;
+                    color: white;
+                    padding: 12px 24px;
+                    border: none;
+                    border-radius: 8px;
+                    text-decoration: none;
+                    font-size: 18px;
+                    transition: background-color 0.3s ease;
+                }
+
+                .btn:hover {
+                    background-color: #218838;
+                }
+
+                @media (min-width: 768px) {
+                    .main-container {
+                        width: 100%;
+                    }
+                }
+
+                @media (min-width: 992px) {
+                    .main-container {
+                        width: 600px;
+                    }
+                }
+            </style>
+        </head>
+        <body>
+            <div class="main-container">
+                <div class="icon">😞</div>
+                <div class="title">Oh...No</div>
+                <p class="message">Can't Find Your Page....</p>
+                <a class="btn" href="
+                <?php
+                    if (
+                        isset($_SERVER['HTTPS']) &&
+                        ($_SERVER['HTTPS'] == 'on' || $_SERVER['HTTPS'] == 1) ||
+                        isset($_SERVER['HTTP_X_FORWARDED_PROTO']) &&
+                        $_SERVER['HTTP_X_FORWARDED_PROTO'] == 'https'
+                    ) {
+                        $ssl = 'https';
+                    } else {
+                        $ssl = 'http';
+                    }
+
+                    $app_url = ($ssl)
+                        . "://" . $_SERVER['HTTP_HOST']
+                        //. $_SERVER["SERVER_NAME"]
+                        . (dirname($_SERVER["SCRIPT_NAME"]) == DIRECTORY_SEPARATOR ? "" : "/")
+                        . trim(str_replace("\\", "/", dirname($_SERVER["SCRIPT_NAME"])), "/");
+                    
+                    echo  $app_url; 
+                ?>">← Go Home</a>
+            </div>
+        </body>
+        </html>
+        <?php
     }
 }
 ?>
