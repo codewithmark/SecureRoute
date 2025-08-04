@@ -6,11 +6,11 @@ class SecureRoute
     protected array $namedRoutes = [];
     protected string $basePath = '';
     protected array $matchTypes = [
-        'i'  => '[0-9]++',
-        'a'  => '[0-9A-Za-z]++',
-        'h'  => '[0-9A-Fa-f]++',
-        '*'  => '.+?',
-        '**' => '.++',
+        'i'  => '[0-9]+',
+        'a'  => '[0-9A-Za-z]+',
+        'h'  => '[0-9A-Fa-f]+',
+        '*'  => '[^/]+',
+        '**' => '.+',
         ''   => '[^/\.]++'
     ];
 
