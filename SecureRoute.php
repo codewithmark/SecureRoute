@@ -16,7 +16,11 @@ class SecureRoute
 
     public function __construct(array $routes = [], string $basePath = '', array $matchTypes = [])
     {
-        $this->setBasePath($basePath);
+        $scriptName = $_SERVER['SCRIPT_NAME'];
+        $scriptDir = dirname($scriptName);
+        $route_base_path = rtrim($scriptDir, '/') === '' ? '/' : rtrim($scriptDir, '/') . '/';
+ 
+        $this->setBasePath($route_base_path);
         $this->addMatchTypes($matchTypes);
         $this->addRoutes($routes);
     }
@@ -155,7 +159,7 @@ class SecureRoute
                 $optionalPattern = $optional ? '?' : '';
                 $pattern = '(?:' . ($pre !== '' ? $pre : '') .
                     '(?P<' . $param . '>' . $typeRegex . ')' .
-                    ')' . $optionalPattern . $optionalPattern;
+                    ')' . $optionalPattern;
 
                 $route = str_replace($block, $pattern, $route);
             }
