@@ -16,11 +16,11 @@ A lightweight, flexible PHP router class for handling HTTP requests with support
 
 ## Installation
 
-Simply include the `route.php` file in your project:
+Simply include the `SecureRoute.php` file in your project:
 
 ```php
 <?php
-require_once 'route.php';
+require_once 'SecureRoute.php';
 
 $router = new SecureRoute();
 ```
