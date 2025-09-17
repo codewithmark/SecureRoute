@@ -164,22 +164,6 @@ echo $router->generate('blog.post', [
 // Output: /blog/2024/3/my-awesome-post
 ```
 
-## Advanced Usage
-
-### Base Path
-
-If your application is installed in a subdirectory:
-
-```php
-$router = new SecureRoute([], '/myapp');
-
-$router->map('GET', '/users', function () {
-    echo "Users page";
-});
-
-// This will match: /myapp/users
-```
-
 ### Custom Match Types
 
 Add your own parameter types:
