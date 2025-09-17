@@ -1,8 +1,6 @@
 <?php 
     require 'SecureRoute.php'; 
 
-    $router = new SecureRoute([], '/secure-route-app'); // ✅ BASE PATH SET
-
     $router->map('GET', '/', function () {
         echo "Welcome to the homepage!";
 
@@ -28,3 +26,4 @@
 
 */
 ?>
+
